@@ -18,3 +18,6 @@ Here you will see a list of modules that have been uploaded, within this list yo
 ## Configuration
 
 Once the module has been installed each administrator will need to login to WHMCS (Addons > WHMCS to Pushover) and Setup your pushover key.
+
+## More Data
+Access http://viniciusmuniz.com or send me an email: vinicius@viniciusmuniz.com
