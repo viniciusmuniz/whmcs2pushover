@@ -98,7 +98,7 @@ function widget_push_whmcs($vars) {
 		$("#id_message_push").val("");
 	}
     </script>
-    <div id="send_push_confirm" style="display:none;margin:0 0 5px 0;padding:5px 20px;background-color:#DBF3BA;font-weight:bold;color:#6A942C;">Push Sended Successfully!</div>
+    <div id="send_push_confirm" style="display:none;margin:0 0 5px 0;padding:5px 20px;background-color:#DBF3BA;font-weight:bold;color:#6A942C;">Push Sent Successfully!</div>
     ';
     $options = "User: <select id='id_send_push_user'>";
     while($u = mysql_fetch_array( $rs, MYSQL_ASSOC ))
