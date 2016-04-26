@@ -73,7 +73,7 @@ function whmcs2pushover_output($vars) {
 							<input type="checkbox" name="permissions[new_ticket]" value="1" id="notifications_new_ticket" '.($data['permissions']['new_ticket'] == "1" ? "checked" : "").'> <label for="notifications_new_ticket">New Support Ticket</label><br>
 							<input type="checkbox" name="permissions[new_update]" value="1" id="notifications_new_update" '.($data['permissions']['new_update'] == "1" ? "checked" : "").'> <label for="notifications_new_update">New Support Ticket Update</label><br>
 							<input type="checkbox" name="permissions[new_cancellation]" value="1" id="notifications_new_cancellation" '.($data['permissions']['new_cancellation'] == "1" ? "checked" : "").'> <label for="notifications_new_cancellation">New Cancellation Request</label><br>
-							<input type="checkbox" name="permissions[new_adminlogin]" value="1" id="notifications_new_adminlogin" '.($data['permissions']['new_adminlogin'] == "1" ? "checked" : "").'> <label for="notifications_new_adminlogin">New Administrator Login Updates</label><br>
+							<input type="checkbox" name="permissions[new_adminlogin]" value="1" id="notifications_new_adminlogin" '.($data['permissions']['new_adminlogin'] == "1" ? "checked" : "").'> <label for="notifications_new_adminlogin">Administrator Login Alerts</label><br>
 						</td>
 					</tr>
 				</table>
