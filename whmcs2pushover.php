@@ -52,10 +52,10 @@ function whmcs2pushover_output($vars) {
 		$data = mysql_fetch_array($data, MYSQL_ASSOC);
 		$data['permissions'] = unserialize($data['permissions']);
 	}
-	
+
 	//===========================
 	echo "<p><a href='addonmodules.php?module=whmcs2pushover&disable=1'>Disable WHMCS to Pushover</a></p>";
-    
+
 	echo '<form method="POST">
 	<table class="form" width="100%" border="0" cellspacing="2" cellpadding="3">
 		<tr>
@@ -72,15 +72,17 @@ function whmcs2pushover_output($vars) {
 							<input type="checkbox" name="permissions[new_invoice]" value="1" id="notifications_new_invoice" '.($data['permissions']['new_invoice'] == "1" ? "checked" : "").'> <label for="notifications_new_invoice">Paid Invoices</label><br>
 							<input type="checkbox" name="permissions[new_ticket]" value="1" id="notifications_new_ticket" '.($data['permissions']['new_ticket'] == "1" ? "checked" : "").'> <label for="notifications_new_ticket">New Support Ticket</label><br>
 							<input type="checkbox" name="permissions[new_update]" value="1" id="notifications_new_update" '.($data['permissions']['new_update'] == "1" ? "checked" : "").'> <label for="notifications_new_update">New Support Ticket Update</label><br>
+							<input type="checkbox" name="permissions[new_cancellation]" value="1" id="notifications_new_cancellation" '.($data['permissions']['new_cancellation'] == "1" ? "checked" : "").'> <label for="notifications_new_cancellation">New Support Ticket Update</label><br>
+							<input type="checkbox" name="permissions[new_adminlogin]" value="1" id="notifications_new_adminlogin" '.($data['permissions']['new_adminlogin'] == "1" ? "checked" : "").'> <label for="notifications_new_adminlogin">New Support Ticket Update</label><br>
 						</td>
 					</tr>
 				</table>
 			</td>
 		</tr>
 	</table>
-  
+
   <p align="center"><input type="submit" value="Save Changes" class="button"></p></form>
   ';
- 
+
 
 }
