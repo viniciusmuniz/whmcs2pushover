@@ -6,7 +6,9 @@ This module will notify you each time a client signs up, pays an invoice or open
 
 To install you need to download the files within the repo and upload them to;
 
-WHMCS_ROOT/modules/addons/pushover2whmcs
+```
+WHMCS_ROOT/modules/addons/whmcs2pushover
+```
 
 Once the files have successfully uploaded navigate to the WHMCS administration area and click (Setup > Addon Modules)
 
