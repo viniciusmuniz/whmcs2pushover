@@ -21,7 +21,7 @@ function push_ClientAdd($vars) {
 				 'A new client has signed up!',
 				 $CONFIG['SystemURL'].'/'.$customadminpath.'/clientssummary.php?userid='.$vars['userid']);
 	}
-	
+
 }
 
 function push_InvoicePaid($vars) {
@@ -38,7 +38,7 @@ function push_InvoicePaid($vars) {
 
 function push_TicketOpen($vars) {
 	global $customadminpath, $CONFIG;
-	
+
 	$administrators  = getUsersToPermission('new_ticket');
     while($u = mysql_fetch_array( $administrators, MYSQL_ASSOC )){
 		sendPush($u['access_token'],
@@ -59,6 +59,30 @@ function push_TicketUserReply($vars) {
 	}
 }
 
+function push_CancellationRequest($vars) {
+	global $customadminpath, $CONFIG;
+
+	$administrators  = getUsersToPermission('new_cancellation');
+    while($u = mysql_fetch_array( $administrators, MYSQL_ASSOC )){
+		sendPush($u['access_token'],
+				 ''.$vars['type'].' Cancellation Request ',
+				 substr($vars['relid'].' (by '.$vars['userid'].")\n" . $vars['reason'], 0, 480) . '...',
+				  $CONFIG['SystemURL'].'/'.$customadminpath.'/cancelrequests.php');
+	}
+}
+
+
+function push_AdminLogin($vars) {
+	global $customadminpath, $CONFIG;
+
+	$administrators  = getUsersToPermission('new_adminlogin');
+    while($u = mysql_fetch_array( $administrators, MYSQL_ASSOC )){
+			sendPush($u['access_token'],
+					 ''.$vars['username'].' just logged in..',
+					 $CONFIG['SystemURL'].'/'.$customadminpath.'systemadminlog.php');
+	}
+}
+
 
 function sendPush( $user, $title = '', $message = '', $url = '')
 {
@@ -75,11 +99,12 @@ add_hook("ClientAdd",1,"push_ClientAdd");
 add_hook("InvoicePaid",1,"push_InvoicePaid");
 add_hook("TicketOpen",1,"push_TicketOpen");
 add_hook("TicketUserReply",1,"push_TicketUserReply");
-
+add_hook("CancellationRequest",1,"push_CancellationRequest");
+add_hook("AdminLogin",1,"push_AdminLogin");
 
 
 function widget_push_whmcs($vars) {
-	
+
 	if(isset($_POST['action']) && $_POST['action'] == 'sendpush')
 	{
 		$u = mysql_fetch_array( select_query('tbladmins', 'username', array('id' => $vars['adminid']) ), MYSQL_ASSOC );
@@ -106,7 +131,7 @@ function widget_push_whmcs($vars) {
 		$options .= "<option value='". $u['token']. "'>". $u['user']. "</option>";
 	}
 	$options .= "</select>";
-	
+
 	$content .= $options . "<br/><br/><textarea style='width:95%;height:100px;' id='id_message_push'></textarea><br/>";
 	$content .= '<input type="button" value="Send push" onclick="widgetsendpush()" />';
     return array('title'=>$title,'content'=> $content);
