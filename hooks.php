@@ -7,7 +7,7 @@ function getToken()
 
 function getUsersToPermission($permission)
 {
-	return full_query("SELECT `access_token` FROM `tblpushover_whmcs` WHERE `permissions` LIKE '%". $permission ."%'");
+	return full_query("SELECT `access_token`, `supportdepts` FROM `tblpush_whmcs` as p, `tbladmins` as a WHERE `permissions` LIKE '%". $permission ."%' AND a.id = p.adminid");
 }
 
 function push_ClientAdd($vars) {
@@ -41,6 +41,8 @@ function push_TicketOpen($vars) {
 
 	$administrators  = getUsersToPermission('new_ticket');
     while($u = mysql_fetch_array( $administrators, MYSQL_ASSOC )){
+    		$arr_dept = explode(',', $u['supportdepts']);
+		if(!in_array($vars['deptid'], $arr_dept)) continue;
 		sendPush($u['access_token'],
 				 'A new ticket has arrived',
 				substr($vars['subject'].' (in '.$vars['deptname'].")\n" . $vars['message'], 0, 480)  . '...',
@@ -52,6 +54,8 @@ function push_TicketUserReply($vars) {
 	global $customadminpath, $CONFIG;
 	$administrators  = getUsersToPermission('new_update');
     while($u = mysql_fetch_array( $administrators, MYSQL_ASSOC )){
+    		$arr_dept = explode(',', $u['supportdepts']);
+		if(!in_array($vars['deptid'], $arr_dept)) continue;
 		sendPush($u['access_token'],
 				 'A ticket has been updated',
 				 substr($vars['subject'].' (in '.$vars['deptname'].")\n" . $vars['message'], 0, 480) . '...',
