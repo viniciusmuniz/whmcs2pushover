@@ -7,7 +7,7 @@ function getToken()
 
 function getUsersToPermission($permission)
 {
-	return full_query("SELECT `access_token`, `supportdepts` FROM `tblpush_whmcs` as p, `tbladmins` as a WHERE `permissions` LIKE '%". $permission ."%' AND a.id = p.adminid");
+	return full_query("SELECT `access_token`, `supportdepts` FROM `tblpushover_whmcs` as p, `tbladmins` as a WHERE `permissions` LIKE '%". $permission ."%' AND a.id = p.adminid");
 }
 
 function push_ClientAdd($vars) {
