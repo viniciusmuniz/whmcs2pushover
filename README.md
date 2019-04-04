@@ -1,4 +1,4 @@
-#WHMCS to Pushover Integration
+# WHMCS to Pushover Integration
 
 This module will notify you each time a client signs up, pays an invoice or opens a support ticket in WHMCS.
 
@@ -23,3 +23,5 @@ Once the module has been installed each administrator will need to login to WHMC
 
 ## More Data
 Access http://viniciusmuniz.com or send me an email: vinicius@viniciusmuniz.com
+
+## Update ...
